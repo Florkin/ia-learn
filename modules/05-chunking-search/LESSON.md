@@ -50,7 +50,7 @@ Routing > Route Groups > Middleware
 ```
 
 C'est ce chemin suivi du texte qui est transformé en vecteur (propriété `content` de `Chunk`). Le coût est
-de quelques mots par passage, et le gain en précision est net.
+de quelques mots par passage, et le passage devient retrouvable par une question sur le routage.
 
 ### Nettoyer avant de découper
 
@@ -75,7 +75,7 @@ un produit de matrices suffit : `vectors @ query_vector` donne les 3 144 scores 
   0.746  middleware.md  Middleware > Registering Middleware > Middleware Groups
 ```
 
-Cette recherche exhaustive répond en quelques millisecondes jusqu'à des centaines de milliers de passages.
+Cette recherche exhaustive reste instantanée jusqu'à des centaines de milliers de passages.
 Une base vectorielle n'apporte pas une meilleure recherche. Elle apporte la persistance, les filtres et le
 passage à l'échelle, sujets du module suivant.
 
