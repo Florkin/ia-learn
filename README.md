@@ -91,6 +91,19 @@ Trois étapes demandent une préparation, rappelée en tête de leur leçon :
 - au module 10, une clé OpenRouter dans `.env` ;
 - au module 11, `uv sync --group langchain`, et à partir du module 13, `uv sync --all-groups`.
 
+## Lire sur téléphone
+
+Le dépôt contient un petit lecteur web qui met les leçons en page pour un écran de téléphone : le parcours,
+chaque leçon, ses approfondissements, et le passage au module précédent ou suivant sous le pouce.
+
+```shell
+python3 reader/server.py
+```
+
+Ouvre ensuite `http://localhost:8000`, ou depuis ton téléphone `http://<adresse de ta machine>:8000` sur le
+même réseau Wi-Fi. Le lecteur n'a aucune dépendance et lit les fichiers du dépôt à chaque visite : après un
+`git pull`, les pages sont à jour. Les exercices, eux, se font toujours dans l'éditeur.
+
 ## À deux
 
 Tout le monde travaille sur la même branche. Tu ne modifies que ton dossier `learners/<ton prénom>/` : tes
@@ -129,6 +142,7 @@ uv run --all-groups python -m course.selftest
 modules/NN-nom/    LESSON.md, exercise.py (squelette), check.py, DEEPER.md
 assistant/         les briques de référence de l'assistant, une par module
 course/            l'outillage des checks
+reader/            le lecteur web des leçons, pour téléphone
 data/golden.jsonl  les 52 questions d'évaluation
 learners/          un dossier par apprenant
 corpus/, .data/    documentation téléchargée, index et modèles affinés (hors git)

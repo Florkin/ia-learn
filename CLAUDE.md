@@ -21,6 +21,19 @@ la documentation de Laravel sert de fil rouge. La conception d'origine est dans
 - Les dépendances lourdes vont dans un groupe uv (`langchain`, `training`), et le check commence par
   `require(...)` pour afficher la commande d'installation.
 
+## Le lecteur web
+
+`reader/` sert les leçons en pages web pour téléphone : un seul processus, bibliothèque standard uniquement,
+aucun fichier généré. Trois conséquences pour qui modifie le contenu.
+
+- Son rendu markdown couvre ce que les leçons utilisent : titres, paragraphes, blocs de code, listes à un
+  niveau, citations, tableaux, code en ligne, liens, gras, italique. Pas de liste imbriquée ni d'image.
+- Son index se construit à partir du tableau « Le parcours » du README. Une ligne de module garde la forme
+  `| 03 | [Titre](modules/03-slug/LESSON.md) | Résumé | 35 min |`, sous une ligne de bloc `| | **Bloc** | | |`.
+- Après toute modification d'un fichier markdown du cours, ses tests comparent le rendu à celui d'une
+  bibliothèque de référence :
+  `cd reader && uv run --no-project --with markdown-it-py python -m unittest`
+
 ## Gabarit d'un module
 
 `modules/NN-slug/` contient quatre fichiers.
@@ -66,7 +79,8 @@ de conclusion. Un terme technique anglais consacré reste en anglais (RAG, embed
    appelle un modèle.
 4. Lancer la démonstration du module et garder ses sorties.
 5. Écrire `LESSON.md` et `DEEPER.md` à partir de ces sorties.
-6. Ajouter la ligne au tableau du README. Lancer `uv run --all-groups python -m course.selftest`.
+6. Ajouter la ligne au tableau du README. Lancer `uv run --all-groups python -m course.selftest`, puis les
+   tests du lecteur.
 7. Un commit pour le module.
 
 ## Réviser un module
@@ -93,6 +107,7 @@ COURSE_MODE=skeleton uv run modules/NN-slug/check.py   # must fail
 COURSE_MODE=reference uv run modules/NN-slug/check.py  # must pass
 uv run --all-groups python -m course.selftest [NN]   # both, for every module or the given prefixes
 uv run python -m assistant.store                     # build the reference index
+python3 reader/server.py                             # the web reader, on http://localhost:8000
 ```
 
 ## État des vérifications

@@ -1,0 +1,132 @@
+/* IA Learn — the house charter of the launcher this page is linked from: warm
+   paper background, white rounded cards without borders, ink for the main
+   action. What this page adds is the typography of a text meant to be read.
+   Phone first; the media queries at the bottom widen it. */
+
+:root {
+  --bg: #f3f1ec;
+  --card: #fff;
+  --ink: #1b1a17;
+  --soft: #5e5b55;
+  --mute: #7a766e;
+  --chip: #e9e6df;
+  --line: rgba(27, 26, 23, 0.07);
+  --accent-ink: #3d4ed0;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 8px 24px rgba(0, 0, 0, 0.05);
+  --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  --tap: 44px;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 15px/1.35 system-ui, -apple-system, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-wrap: break-word;
+}
+
+a { color: inherit; text-decoration: none; touch-action: manipulation; }
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+
+/* ---------- Page frame ---------- */
+
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 560px;
+  margin: 0 auto;
+  padding: max(16px, env(safe-area-inset-top)) 16px max(32px, env(safe-area-inset-bottom));
+}
+main > * { min-width: 0; }
+
+.back { align-self: flex-start; min-height: var(--tap); display: flex; align-items: center; padding: 0 4px; font-size: 13px; color: var(--soft); }
+.back + header { margin-top: -8px; }
+header { display: flex; justify-content: space-between; align-items: flex-end; gap: 12px; padding: 0 4px; }
+h1 { font-size: 28px; line-height: 1.15; letter-spacing: -0.03em; margin: 0; min-width: 0; }
+h2 { font-size: 12px; font-weight: 600; color: var(--mute); text-transform: uppercase; letter-spacing: 0.06em; margin: 4px 4px 9px; }
+#status { margin: 0 0 5px; font-size: 13px; color: var(--soft); white-space: nowrap; }
+
+/* ---------- Course map ---------- */
+
+.list { background: var(--card); border-radius: 22px; box-shadow: var(--shadow); padding: 4px 16px; }
+.list > * + * { border-top: 1px solid var(--line); }
+.item { display: flex; align-items: center; gap: 12px; min-height: var(--tap); padding: 10px 0; }
+.num { flex: none; width: 22px; font-size: 13px; font-weight: 600; color: var(--mute); font-variant-numeric: tabular-nums; }
+.name { flex: 1; min-width: 0; }
+.name b { display: block; font-weight: 600; }
+.name small { display: block; font-size: 12px; color: var(--mute); }
+.size { flex: none; font-size: 12.5px; color: var(--mute); white-space: nowrap; }
+.item i, .tile i { flex: none; font-style: normal; font-size: 20px; color: #b3aea4; }
+
+.links { display: flex; gap: 6px; }
+.links a { flex: 1; display: flex; align-items: center; justify-content: center; min-height: var(--tap); padding: 10px 4px; border-radius: 10px; background: var(--chip); font-size: 12px; color: var(--soft); white-space: nowrap; }
+
+/* ---------- A lesson ---------- */
+
+/* Duration, prerequisites and the date the lesson was last checked. */
+.intro { padding: 0 4px; font-size: 13px; line-height: 1.45; color: var(--soft); }
+.intro blockquote, .intro p { margin: 0; }
+.intro p + p, .intro blockquote + p { margin-top: 6px; }
+
+/* One card per section. Text is set larger than in the launchers: it is read, not scanned. */
+.sheet { background: var(--card); border-radius: 22px; box-shadow: var(--shadow); padding: 4px 18px; font-size: 16px; line-height: 1.55; }
+.sheet > * { margin: 14px 0; }
+.sheet h3 { font-size: 17px; line-height: 1.3; letter-spacing: -0.01em; margin: 24px 0 -4px; }
+.sheet > h3:first-child { margin-top: 14px; }
+.sheet ul, .sheet ol { padding-left: 22px; }
+.sheet li + li { margin-top: 7px; }
+.sheet li::marker { color: var(--mute); }
+.sheet a { color: var(--accent-ink); text-decoration: underline; text-underline-offset: 2px; }
+.sheet blockquote { margin-left: 0; margin-right: 0; padding-left: 12px; border-left: 3px solid var(--chip); color: var(--soft); }
+
+/* A long identifier breaks rather than widen the page. */
+code { font-family: var(--mono); font-size: 0.86em; background: var(--chip); border-radius: 6px; padding: 1px 5px; overflow-wrap: anywhere; }
+/* A code block keeps its lines whole and scrolls inside its own box. */
+pre { background: var(--bg); border-radius: 14px; padding: 12px 14px; overflow-x: auto; -webkit-overflow-scrolling: touch; font-size: 12.5px; line-height: 1.5; }
+pre code { background: none; border-radius: 0; padding: 0; font-size: inherit; overflow-wrap: normal; white-space: pre; }
+
+.table { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+table { border-collapse: collapse; font-size: 13.5px; line-height: 1.4; }
+th, td { text-align: left; vertical-align: top; padding: 8px 12px 8px 0; }
+th { font-size: 12px; font-weight: 600; color: var(--mute); white-space: nowrap; }
+td { border-top: 1px solid var(--line); }
+
+.tile { display: block; background: var(--card); border-radius: 22px; padding: 14px 16px; box-shadow: var(--shadow); }
+.row { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.row b { font-weight: 600; }
+.tile small { display: block; font-size: 12px; color: var(--mute); }
+
+.empty { margin: 0; padding: 18px 16px; border-radius: 22px; background: var(--card); box-shadow: var(--shadow); color: var(--mute); font-size: 14px; }
+
+/* ---------- Bottom bar ---------- */
+
+/* Previous and next stay under the thumb however long the lesson is. */
+.bar { position: sticky; bottom: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 14px 0 max(8px, env(safe-area-inset-bottom)); background: linear-gradient(transparent, var(--bg) 35%); }
+.button { display: flex; flex-direction: column; justify-content: center; min-width: 0; min-height: 52px; padding: 7px 14px; border-radius: 13px; background: var(--chip); color: var(--ink); }
+.button small { font-size: 11px; color: var(--mute); }
+.button b { font-size: 14px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.primary { align-items: flex-end; background: var(--ink); color: #fff; }
+.primary small { color: rgba(255, 255, 255, 0.65); }
+.primary b { max-width: 100%; }
+.button[aria-disabled] { visibility: hidden; }
+
+/* ---------- Desktop ---------- */
+
+@media (min-width: 900px) {
+  main { max-width: 720px; padding-top: 56px; }
+  .sheet { padding: 8px 28px; font-size: 16.5px; }
+  pre { font-size: 13.5px; }
+}
+
+/* With a mouse the targets can tighten; with a finger they keep their 44px. */
+@media (hover: hover) and (pointer: fine) {
+  .item { min-height: 40px; padding: 8px 0; }
+  .item:hover b, .tile:hover b { text-decoration: underline; text-decoration-color: var(--line); }
+  .button:hover, .links a:hover { filter: brightness(0.95); }
+}

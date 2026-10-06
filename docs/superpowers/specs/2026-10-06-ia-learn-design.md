@@ -190,6 +190,16 @@ support.
 
 Chaque leçon affiche en tête la date de sa dernière vérification et les versions d'outils concernées.
 
+## Lecteur web
+
+Ajouté après la livraison du socle, à la demande de Tristan, pour lire les leçons sur téléphone. `reader/`
+est un processus Python sans dépendance qui rend les fichiers markdown à chaque visite : le parcours tiré du
+tableau du README, chaque leçon découpée en une carte par section, ses approfondissements, et une barre basse
+pour passer d'un module à l'autre. Il reprend la charte des autres pages de Tristan (fond papier, cartes
+blanches arrondies, encre pour l'action principale) et reste en lecture seule. Son rendu markdown se limite
+aux constructions employées par les leçons, et un test le compare à `markdown-it-py` sur tous les fichiers du
+cours.
+
 ## Vérification du support
 
 Chaque module est livré après deux contrôles exécutés réellement sur la machine de Tristan : le check échoue
@@ -202,7 +212,7 @@ l'adresse locale, qui suit le même protocole, et contre la liste de prix publiq
 
 ## Hors périmètre
 
-- Site web, comptes, exécution de code dans le navigateur.
+- Comptes, exécution de code dans le navigateur.
 - Modèles servis par un serveur partagé.
 - Déploiement de l'assistant en production, interface graphique.
 - Théorie détaillée des transformers (mécanisme d'attention), génération d'images, audio.
