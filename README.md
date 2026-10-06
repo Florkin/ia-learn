@@ -14,7 +14,7 @@ Il te faut [uv](https://docs.astral.sh/uv/) et [Ollama](https://ollama.com). uv 
 Python tout seul.
 
 ```shell
-git clone <adresse du dépôt> && cd ia-learn
+git clone https://github.com/Florkin/ia-learn.git && cd ia-learn
 uv sync                          # base dependencies, a few seconds
 ollama pull granite4.1:3b        # chat model, 2.1 GB
 ollama pull bge-m3               # embedding model, 1.2 GB
