@@ -123,7 +123,9 @@ seule valeur en nombre Python.
 3. Écris `train` en suivant sa docstring.
 4. Lance ta copie. Elle entraîne le modèle linéaire, lui fait classer deux questions, puis lance
    l'expérience de surapprentissage. Repère l'époque où la perte de validation remonte.
-5. Passe `lr` à `1.0` dans le premier entraînement et relance, puis à `1e-5`. Remets `1e-2`.
+5. Ajoute `lr=100` à l'appel du premier entraînement et relance : la perte part dans les dizaines et saute
+   d'une époque à l'autre. Essaie ensuite `lr=1e-5` : elle bouge à peine et la précision reste celle de la
+   réponse naïve. Retire le paramètre.
 6. Relance le check jusqu'à ce qu'il passe.
 
 ## À retenir

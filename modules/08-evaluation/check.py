@@ -60,6 +60,6 @@ with check.step("evaluate mesure la recherche vectorielle de l'assistant sur le 
     report = ex.evaluate(retrieval.vector_search, golden, k=5)
     expected = evaluation.evaluate(retrieval.vector_search, golden, k=5)
     assert report["ranks"] == expected["ranks"], "les rangs diffèrent de ceux de l'évaluation de référence"
-    print(f"       {len(golden)} questions, hit rate {report['hit_rate']:.3f}, MRR {report['mrr']:.3f}, {len(report['misses'])} échecs")
+    print(f"       {len(golden)} questions, hit rate {report['hit_rate']:.3f}, MRR {report['mrr']:.3f}, {len(report['misses'])} sans passage pertinent")
 
 check.finish()

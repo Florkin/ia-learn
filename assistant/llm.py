@@ -1,4 +1,4 @@
-"""Talking to a chat model: reference bricks for modules 01, 02, 03 and 10."""
+"""Talking to a chat model: reference bricks for modules 01, 02 and 03."""
 
 from collections.abc import Iterator
 from functools import lru_cache
