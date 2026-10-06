@@ -23,5 +23,5 @@ leur confier une recherche précise.
 
 ## Voir l'espace
 
-Avec `sklearn.decomposition.PCA` (ou `numpy.linalg.svd`), projette en deux dimensions les vecteurs d'une
+Avec `numpy.linalg.svd`, projette en deux dimensions les vecteurs d'une
 trentaine de titres de la documentation et trace-les. Les pages d'un même thème se regroupent.
