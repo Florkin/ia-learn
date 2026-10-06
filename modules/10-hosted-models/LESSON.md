@@ -35,7 +35,7 @@ condition pour que la comparaison porte sur les modèles et sur rien d'autre.
 
 ### Le coût se calcule en tokens
 
-Un modèle hébergé facture séparément les tokens lus et les tokens produits, ces derniers trois à cinq fois
+Un modèle hébergé facture séparément les tokens lus et les tokens produits, ces derniers environ cinq fois
 plus cher. Prix publics des trois modèles par défaut du cours, relevés le 2026-10-06, en dollars par million
 de tokens :
 

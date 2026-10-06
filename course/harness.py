@@ -36,6 +36,13 @@ Ce qui a coincé, les questions ouvertes, les idées de modules.
 SETUP_ERRORS = ("APIConnectionError", "APITimeoutError", "ConnectError", "NotFoundError", "AuthenticationError", "ModuleNotFoundError")
 
 
+def require(module: str, command: str) -> None:
+    """Stops with an install hint when a module's optional dependencies are missing. Call before importing them."""
+    if importlib.util.find_spec(module) is None:
+        print(f"Ce module demande des dépendances supplémentaires. Installe-les avec : {command}")
+        sys.exit(2)
+
+
 class Check:
     def __init__(self, check_file: str, reference: str):
         # Windows consoles and pipes do not default to UTF-8.

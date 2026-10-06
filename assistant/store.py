@@ -38,11 +38,15 @@ def query_index(question: str, collection: Collection, k: int = 5, where: dict |
     ]
 
 
+def reference_path() -> Path:
+    """Folder of the reference index. One folder per embedding model: vectors of two models never mix."""
+    return DATA_DIR / f"reference-{re.sub(r'[^\w.-]', '_', settings.embed_model)}"
+
+
 @lru_cache
 def reference_index() -> Collection:
-    """The index of the whole corpus used from module 07 on. Built on first use, one folder per embedding model."""
-    model = re.sub(r"[^\w.-]", "_", settings.embed_model)
-    collection = open_collection(DATA_DIR / f"reference-{model}")
+    """The index of the whole corpus used from module 07 on, built on first use."""
+    collection = open_collection(reference_path())
     if collection.count() == 0:
         chunks = chunk_corpus()
         print(f"Construction de l'index complet : {len(chunks)} passages, compte une à deux minutes sur un Mac récent...")
