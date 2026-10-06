@@ -105,6 +105,13 @@ Reste à vérifier dès que le moyen existe, puis à reporter dans l'en-tête de
 - module 14 : le moteur `peft` sous Windows, sous Linux et sur une carte NVIDIA ;
 - l'ensemble du parcours sur une machine sans carte graphique, pour confirmer les durées annoncées.
 
+Limites connues, sans gravité :
+
+- le check du module 2 suppose qu'une température de 0 donne deux fois la même réponse, ce qui est vrai avec
+  Ollama et peut échouer par moments si `CHAT_*` pointe vers un modèle hébergé ;
+- la copie d'un exercice dans `learners/` n'est pas rafraîchie quand le squelette du module est révisé
+  ensuite. Prévenir l'apprenant, qui peut supprimer sa copie pour repartir du nouveau squelette.
+
 ## Pistes de modules
 
 Reclassement avec un modèle dédié, évaluation des réponses par un modèle juge, pgvector, ingestion de PDF et
