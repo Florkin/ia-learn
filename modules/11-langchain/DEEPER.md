@@ -22,6 +22,6 @@ sommaire et des ancres, lignes `#` dans les blocs de code.
 
 ## Regarder ce qui part vraiment
 
-Ajoute `import langchain; langchain.debug = True` avant d'appeler la chaîne, ou insère dans la chaîne une
-étape `RunnableLambda(lambda x: print(x) or x)` après le prompt. Vérifie que les messages envoyés au modèle
+Ajoute `from langchain_core.globals import set_debug; set_debug(True)` avant d'appeler la chaîne, ou insère
+dans la chaîne une étape `RunnableLambda(lambda x: print(x) or x)` après le prompt. Vérifie que les messages envoyés au modèle
 sont bien ceux de ton `build_prompt`.

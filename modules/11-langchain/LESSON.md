@@ -14,7 +14,7 @@ que le framework apporte et ce qu'il coûte.
 
 LangChain est une bibliothèque qui donne une interface commune aux pièces que tu as écrites à la main, et
 une façon de les enchaîner. Chaque pièce existe en dizaines de variantes interchangeables : un modèle de
-conversation chez n'importe quel fournisseur, une base vectorielle parmi une cinquantaine, des lecteurs de
+conversation chez n'importe quel fournisseur, une base vectorielle parmi des dizaines, des lecteurs de
 PDF, de pages web ou de Notion.
 
 Tu connais déjà tout ce qu'il y a dessous. La correspondance avec ton code :
