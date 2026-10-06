@@ -1,6 +1,7 @@
 # ia-learn : support de formation à l'IA engineering
 
-Date : 2026-10-06. Statut : validé en conversation, implémentation enchaînée à la demande de Tristan.
+Date : 2026-10-06. Statut : validé en conversation, implémenté le même jour. Les écarts décidés pendant
+l'implémentation sont reportés ici.
 
 ## But
 
@@ -101,9 +102,9 @@ obtenu. Si le modèle est injoignable, le message dit de lancer Ollama ou de vé
 | 5 | `05-chunking-search` | Découpage par titres, recherche exhaustive | `chunk_markdown`, `search` | `assistant/chunking.py` |
 | 6 | `06-vector-store` | Collection, identifiants, métadonnées, filtres, index approché | `build_index`, `query_index` | `assistant/store.py` |
 | 7 | `07-first-rag` | Recherche puis génération, citations, savoir dire « je ne sais pas » | `build_prompt`, `answer` | `assistant/rag.py` |
-| 8 | `08-evaluation` | Jeu de questions de référence, taux de succès, rang moyen | `hit_rate`, `mrr`, `evaluate` | `assistant/evaluation.py` |
+| 8 | `08-evaluation` | Jeu de questions de référence, taux de succès, rang moyen | `first_relevant_rank`, `hit_rate`, `mrr`, `evaluate` | `assistant/evaluation.py` |
 | 9 | `09-better-retrieval` | Recherche hybride (mots-clés et vecteurs), fusion des classements, reclassement | `reciprocal_rank_fusion`, `hybrid_search` | `assistant/retrieval.py` |
-| 10 | `10-hosted-models` | Modèles hébergés, coût par token, latence, confidentialité | `cost`, `compare` | `assistant/llm.py` |
+| 10 | `10-hosted-models` | Modèles hébergés, coût par token, latence, confidentialité | `cost`, `ask_target`, `compare` | `assistant/hosted.py` |
 | 11 | `11-langchain` | Interfaces communes, composition, ce que le framework cache | `build_chain` | `assistant/rag_langchain.py` |
 | 12 | `12-tools-agents` | Appel d'outils, boucle d'agent, garde-fous | `run_agent` | `assistant/agent.py` |
 | 13 | `13-training` | Paramètres, perte, descente de gradient, époques, surapprentissage | `train` (boucle d'entraînement) | `assistant/classifier.py` |
@@ -122,12 +123,14 @@ la télécharge dans `corpus/`, qui reste hors git. Le corpus retenu compte 76 p
 fournit la section de chaque page, utilisée comme métadonnée de filtrage (module 6) et comme étiquette
 (modules 13 et 14).
 
-Les modules 4 à 6 travaillent sur un échantillon de dix pages pour que les checks restent rapides sur une
-machine sans carte graphique. L'index complet de référence est construit une fois, avant le module 7.
+Les modules 4 à 6 travaillent sur un échantillon de sept pages courtes pour que les checks restent rapides sur
+une machine sans carte graphique. L'index complet de référence est construit une fois, avant le module 7.
 
-`data/golden.jsonl` contient une trentaine de questions, majoritairement en français, avec la ou les pages
-où se trouve la réponse. Une partie cite des identifiants exacts (noms de méthodes, clés de configuration)
-pour que la recherche par mots-clés du module 9 ait un effet mesurable.
+`data/golden.jsonl` contient 52 questions, majoritairement en français. Chacune donne la ou les pages où se
+trouve la réponse et un terme que le bon passage doit contenir : juger à la page seule s'est révélé trop
+indulgent pour départager deux méthodes de recherche. Une partie des questions cite des identifiants exacts
+(noms de méthodes, clés de configuration) pour que la recherche par mots-clés du module 9 ait un effet
+mesurable.
 
 ## Configuration
 
@@ -141,6 +144,7 @@ sauf le prénom qui est obligatoire.
 | `EMBED_BASE_URL`, `EMBED_API_KEY`, `EMBED_MODEL` | Ollama, `bge-m3` | Modèle d'embeddings |
 | `OPENROUTER_API_KEY`, `HOSTED_MODELS` | vide, deux modèles bon marché et un modèle de pointe | Comparaison du module 10 |
 | `FINETUNE_BACKEND` | `mlx` sur Mac Apple Silicon, `peft` ailleurs | Variante du module 14 |
+| `FINETUNE_ITERS` | 200 | Longueur de l'entraînement du module 14, à réduire sur un processeur seul |
 
 Une machine trop juste pour Ollama peut pointer `CHAT_*` et `EMBED_*` vers OpenRouter dès le module 1 :
 `baai/bge-m3` y est disponible, donc les vecteurs restent comparables.
@@ -156,8 +160,9 @@ La leçon, le jeu de données, le modèle de base et le check sont communs. Seul
 | Sélection | `FINETUNE_BACKEND=mlx` | `FINETUNE_BACKEND=peft` |
 
 Le modèle de base est `HuggingFaceTB/SmolLM2-360M-Instruct` (licence Apache 2.0, téléchargeable sans
-compte), retenu parce qu'il s'affine en quelques minutes sur un processeur. Si la mesure à l'implémentation
-montre qu'il n'apprend pas la tâche, on prend le modèle ouvert de taille supérieure. La variante `peft` tourne aussi sur
+compte). Mesuré à l'implémentation : 200 itérations prennent 34 secondes avec `mlx`, 113 secondes avec
+`peft` sur la carte graphique d'un Mac et 7 minutes sur son processeur seul, pour 95 à 100 % de bonnes
+réponses contre 7 % avant affinage. La variante `peft` tourne aussi sur
 Mac, ce qui permet de comparer les deux sur la même machine. `assistant/finetune.py` expose deux fonctions,
 `train` et `generate`, et délègue au moteur choisi.
 
@@ -191,8 +196,9 @@ Chaque module est livré après deux contrôles exécutés réellement sur la ma
 sur le squelette non complété, et il passe quand on lui donne la solution de référence. Un script
 `course/selftest.py` rejoue ces deux contrôles pour tous les modules, pour valider une révision.
 
-Le module 10 ne peut pas être vérifié contre OpenRouter sans clé d'API. Son code est vérifié contre
-l'adresse locale, qui suit le même protocole.
+Le module 10 n'a pas pu être vérifié contre OpenRouter, faute de clé d'API. Son code est vérifié contre
+l'adresse locale, qui suit le même protocole, et contre la liste de prix publique d'OpenRouter. Le moteur
+`peft` du module 14 n'a été exécuté que sur un Mac.
 
 ## Hors périmètre
 

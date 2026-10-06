@@ -111,7 +111,9 @@ peft     toute machine, avec PyTorch      113 s sur la carte graphique Apple    
 
 Sur un PC sans carte graphique, compte plutôt quinze à vingt minutes. Cette durée est une estimation et n'a
 pas été mesurée. Tu peux la diviser par deux avec `FINETUNE_ITERS=100` dans `.env`, pour une précision
-mesurée de 83 %. Avec une carte NVIDIA, le moteur `peft` l'utilise sans réglage.
+mesurée de 83 %. Avec une carte NVIDIA, le moteur `peft` s'en sert dès que PyTorch la voit. Sous Windows, il
+faut en général installer la version CUDA de PyTorch (voir pytorch.org), celle par défaut n'utilisant que le
+processeur.
 
 Le moteur `peft` tient en une centaine de lignes dans `assistant/finetune_peft.py`. Sa boucle
 d'entraînement est celle que tu as écrite au module 13.
@@ -130,7 +132,7 @@ petit modèle de langage affiné (ce module)     95 à 100 %    34 s à 20 min  
 
 Les mesures viennent d'échantillons de validation différents et se comparent à quelques points près. La
 conclusion ne change pas : pour ranger un texte dans une catégorie, un classifieur sur des embeddings fait
-presque aussi bien pour mille fois moins de calcul. Le fine-tuning d'un modèle de langage se justifie quand
+presque aussi bien avec un modèle près de quarante mille fois plus petit. Le fine-tuning d'un modèle de langage se justifie quand
 la sortie est du texte ou une structure à générer, pas une étiquette.
 
 La réserve du module 13 vaut aussi ici. L'extrait donné au modèle commence par le titre de la page, et les
