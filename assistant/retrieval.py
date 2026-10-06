@@ -70,9 +70,13 @@ def reciprocal_rank_fusion(rankings: list[list[str]], k: int = 60) -> list[str]:
     return sorted(scores, key=scores.get, reverse=True)
 
 
-def hybrid_search(question: str, k: int = 5, depth: int = 20) -> list[Chunk]:
-    """Vector search on the question, keyword search on its English rewrite, merged by rank."""
-    _, by_id, _ = _corpus()
-    by_meaning = [chunk.id for chunk in vector_search(question, depth)]
-    by_keywords = [chunk.id for chunk in keyword_search(analyze_question(question).search_query, depth)]
-    return [by_id[id] for id in reciprocal_rank_fusion([by_meaning, by_keywords])[:k]]
+def hybrid_search(question: str, k: int = 5, depth: int = 20, rewrite: bool = True) -> list[Chunk]:
+    """Vector search on the question, keyword search on its English rewrite, merged by rank.
+
+    The corpus is in English: without the rewrite, the keywords of a French question match almost nothing.
+    """
+    by_meaning = vector_search(question, depth)
+    by_keywords = keyword_search(analyze_question(question).search_query if rewrite else question, depth)
+    by_id = {chunk.id: chunk for chunk in by_meaning + by_keywords}
+    fused = reciprocal_rank_fusion([[chunk.id for chunk in by_meaning], [chunk.id for chunk in by_keywords]])
+    return [by_id[id] for id in fused[:k]]

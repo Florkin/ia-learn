@@ -37,8 +37,8 @@ questions en anglais et des identifiants exacts (`whereBelongsTo`, `APP_DEBUG`).
 
 ### Juger la pertinence
 
-Se contenter de la bonne page serait trop indulgent : la page sur la validation donne plus de deux cents
-passages, et en retrouver un quelconque ne prouve rien. Exiger un terme précis est plus sévère, parfois
+Se contenter de la bonne page serait trop indulgent : la page sur la validation donne 180 passages, et en
+retrouver un quelconque ne prouve rien. Exiger un terme précis est plus sévère, parfois
 trop. La question « Comment tester qu'une route renvoie un code 200 ? » attendait d'abord
 `assertStatus(200)`, alors que le passage sur `assertOk` y répond aussi bien. Le cas accepte maintenant les
 deux.
