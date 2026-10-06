@@ -43,6 +43,7 @@ class Settings:
     openrouter_api_key: str
     hosted_models: tuple[str, ...]
     finetune_backend: str
+    finetune_iters: int
 
 
 def load_settings() -> Settings:
@@ -60,6 +61,7 @@ def load_settings() -> Settings:
         openrouter_api_key=_env("OPENROUTER_API_KEY"),
         hosted_models=tuple(m.strip() for m in hosted.split(",") if m.strip()),
         finetune_backend=_env("FINETUNE_BACKEND", "mlx" if apple_silicon else "peft"),
+        finetune_iters=int(_env("FINETUNE_ITERS", "200")),
     )
 
 

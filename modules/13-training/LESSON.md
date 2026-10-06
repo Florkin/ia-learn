@@ -69,7 +69,7 @@ chiffre il faut un point de comparaison : répondre toujours la section la plus 
 
 ### Le surapprentissage
 
-Même expérience avec un modèle 28 fois plus gros (une couche cachée de 512 neurones) et seulement 150
+Même expérience avec un modèle 57 fois plus gros (une couche cachée de 512 neurones) et seulement 150
 exemples :
 
 ```
@@ -82,13 +82,25 @@ exemples :
 ```
 
 La perte d'entraînement tend vers zéro : le modèle connaît ses 150 exemples par cœur. La perte de validation
-baisse jusqu'à l'époque 100, puis remonte. À partir de là, chaque époque rend le modèle plus sûr de lui sur
+baisse jusque vers l'époque 100, puis remonte. À partir de là, chaque époque rend le modèle plus sûr de lui sur
 ce qu'il a mémorisé et moins bon sur le reste. C'est le surapprentissage (*overfitting*), et son signe est
 toujours le même : les deux courbes se séparent.
 
 Les remèdes : arrêter l'entraînement quand la perte de validation cesse de baisser, ajouter des données,
-prendre un modèle plus petit. Avec seize fois plus d'exemples, le petit modèle linéaire atteignait 93 %.
-Celui-ci plafonne à 81 %.
+prendre un modèle plus petit. Avec près de dix-sept fois plus d'exemples, le petit modèle linéaire atteignait
+93 %. Celui-ci plafonne à 81 %.
+
+### Ce que mesurent vraiment ces 93 %
+
+Le découpage entre entraînement et validation s'est fait passage par passage, au hasard. Des passages d'une
+même page se retrouvent donc des deux côtés. Refais le découpage par page, de sorte qu'aucune page de la
+validation n'ait été vue à l'entraînement, et la précision tombe à 33 %, moins bien que la réponse naïve.
+
+Le modèle n'a pas appris ce qu'est un sujet de sécurité ou de base de données. Il a appris à reconnaître
+les pages, et la section s'en déduit. Pour classer les passages d'une documentation connue, c'est suffisant
+et les 93 % sont réels. Pour classer une page nouvelle, le modèle ne vaut rien. Une mesure ne veut rien dire
+tant qu'on n'a pas vérifié que la validation ressemble à l'usage réel, et cette fuite entre entraînement et
+validation est l'erreur la plus répandue du domaine.
 
 ### Et les grands modèles
 
@@ -124,6 +136,6 @@ seule valeur en nombre Python.
 
 ## Dans l'assistant
 
-Ce classifieur prédit en une fraction de milliseconde la section qui concerne une question. Il pourrait
-servir de filtre de recherche au module 6. Le module suivant traite la même tâche en affinant un modèle de
+Une fois la question vectorisée, ce classifieur prédit sa section instantanément. Il pourrait servir de
+filtre de recherche au module 6. Le module suivant traite la même tâche en affinant un modèle de
 langage, et la comparaison des deux est le point d'arrivée du parcours.

@@ -9,11 +9,10 @@ pas été battue depuis dix époques. Relance l'expérience de surapprentissage 
 
 ## Une validation plus honnête
 
-Le découpage du cours mélange les passages au hasard. Des passages de la même page se retrouvent donc des
-deux côtés, et reconnaître la page suffit à trouver la section. Refais le découpage par page : toutes les
-pages de la validation sont absentes de l'entraînement. La précision chute nettement. Cette fuite entre
-entraînement et validation est l'erreur la plus répandue en apprentissage automatique, et elle fait croire
-à des modèles bien meilleurs qu'ils ne sont.
+La leçon affirme qu'un découpage par page fait tomber la précision à 33 %. Reproduis-le : récupère la page
+de chaque passage dans les métadonnées de l'index (`reference_index().get(include=["embeddings",
+"metadatas"])`), tire au sort un cinquième des pages pour la validation et entraîne le modèle linéaire sur
+les autres. Compare ensuite à la part de la section la plus fréquente dans ta validation.
 
 ## Regarder où le modèle se trompe
 
