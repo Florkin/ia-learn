@@ -1,0 +1,52 @@
+{"question": "Comment définir une route avec un paramètre optionnel ?", "sources": ["routing.md"], "contains": ["optional"]}
+{"question": "Comment limiter le nombre de requêtes par minute sur une route ?", "sources": ["routing.md", "rate-limiting.md"], "contains": ["perMinute"]}
+{"question": "Comment appliquer un middleware à un groupe de routes ?", "sources": ["middleware.md", "routing.md"], "contains": ["group"]}
+{"question": "Comment protéger un formulaire contre les attaques CSRF ?", "sources": ["csrf.md"], "contains": ["@csrf"]}
+{"question": "Comment valider qu'un champ est une adresse e-mail unique dans la table users ?", "sources": ["validation.md"], "contains": ["unique:"]}
+{"question": "Comment afficher les messages d'erreur de validation dans une vue ?", "sources": ["validation.md", "blade.md"], "contains": ["$errors"]}
+{"question": "Comment créer un composant Blade avec des slots ?", "sources": ["blade.md"], "contains": ["$slot"]}
+{"question": "Comment stocker une valeur dans le cache sans date d'expiration ?", "sources": ["cache.md"], "contains": ["forever"]}
+{"question": "Comment envoyer un e-mail en file d'attente ?", "sources": ["mail.md"], "contains": ["queue("]}
+{"question": "Comment relancer un job qui a échoué ?", "sources": ["queues.md"], "contains": ["queue:retry"]}
+{"question": "Comment planifier une commande Artisan tous les jours à minuit ?", "sources": ["scheduling.md"], "contains": ["daily"]}
+{"question": "Comment définir une relation plusieurs-à-plusieurs entre deux modèles ?", "sources": ["eloquent-relationships.md"], "contains": ["belongsToMany"]}
+{"question": "Comment éviter le problème des requêtes N+1 ?", "sources": ["eloquent-relationships.md", "eloquent.md"], "contains": ["eager"]}
+{"question": "Comment ajouter une colonne à une table existante avec une migration ?", "sources": ["migrations.md"], "contains": ["Schema::table"]}
+{"question": "Comment remplir la base de données avec des données de test ?", "sources": ["seeding.md", "eloquent-factories.md", "database-testing.md"], "contains": ["seed"]}
+{"question": "Comment paginer les résultats d'une requête ?", "sources": ["pagination.md"], "contains": ["paginate"]}
+{"question": "Comment hacher un mot de passe ?", "sources": ["hashing.md"], "contains": ["Hash::make"]}
+{"question": "Comment autoriser une action avec une policy ?", "sources": ["authorization.md"], "contains": ["polic"]}
+{"question": "Comment chiffrer une valeur ?", "sources": ["encryption.md"], "contains": ["encrypt"]}
+{"question": "Comment tester qu'une route renvoie un code 200 ?", "sources": ["http-tests.md", "testing.md"], "contains": ["assertStatus(200)", "assertOk"]}
+{"question": "Comment téléverser un fichier et le stocker sur S3 ?", "sources": ["filesystem.md", "requests.md"], "contains": ["s3"]}
+{"question": "Comment traduire un texte selon la langue de l'utilisateur ?", "sources": ["localization.md", "strings.md"], "contains": ["__("]}
+{"question": "Comment créer une commande Artisan personnalisée ?", "sources": ["artisan.md"], "contains": ["make:command"]}
+{"question": "Comment diffuser un événement en temps réel vers le navigateur ?", "sources": ["broadcasting.md"], "contains": ["broadcast"]}
+{"question": "Comment exécuter plusieurs tâches en parallèle ?", "sources": ["concurrency.md", "processes.md"], "contains": ["Concurrency::run"]}
+{"question": "Comment générer une URL signée ?", "sources": ["urls.md"], "contains": ["signedRoute"]}
+{"question": "Comment envoyer les logs dans un canal Slack ?", "sources": ["logging.md"], "contains": ["slack"]}
+{"question": "Comment transformer un modèle en JSON pour une API ?", "sources": ["eloquent-resources.md", "eloquent-serialization.md"], "contains": ["toArray"]}
+{"question": "Comment créer un agent avec le Laravel AI SDK ?", "sources": ["ai-sdk.md"], "contains": ["make:agent"]}
+{"question": "Comment éviter qu'une tâche planifiée se lance deux fois en même temps ?", "sources": ["scheduling.md"], "contains": ["withoutOverlapping"]}
+{"question": "Comment garder un utilisateur connecté après la fermeture du navigateur ?", "sources": ["authentication.md"], "contains": ["remember"]}
+{"question": "Comment annuler la dernière modification du schéma de la base ?", "sources": ["migrations.md"], "contains": ["migrate:rollback"]}
+{"question": "Comment empêcher deux processus de modifier la même ressource en même temps ?", "sources": ["cache.md"], "contains": ["lock"]}
+{"question": "How do I register a service provider?", "sources": ["providers.md"], "contains": ["bootstrap/providers.php"]}
+{"question": "How do I retry a failed request with the HTTP client?", "sources": ["http-client.md"], "contains": ["retry("]}
+{"question": "How do I define an accessor on an Eloquent model?", "sources": ["eloquent-mutators.md"], "contains": ["Attribute::make"]}
+{"question": "What does the firstOrCreate method do?", "sources": ["eloquent.md", "eloquent-relationships.md"], "contains": ["firstOrCreate"]}
+{"question": "À quoi sert whereBelongsTo ?", "sources": ["eloquent-relationships.md"], "contains": ["whereBelongsTo"]}
+{"question": "Quelle variable d'environnement active le mode debug ?", "sources": ["configuration.md", "errors.md"], "contains": ["APP_DEBUG"]}
+{"question": "À quoi sert la directive @vite ?", "sources": ["vite.md"], "contains": ["@vite"]}
+{"question": "Comment utiliser Cache::remember ?", "sources": ["cache.md"], "contains": ["Cache::remember"]}
+{"question": "Que fait la méthode pluck ?", "sources": ["collections.md", "queries.md", "eloquent-collections.md"], "contains": ["pluck"]}
+{"question": "À quoi sert l'option --isolated d'une commande ?", "sources": ["artisan.md"], "contains": ["--isolated"]}
+{"question": "Que fait la règle prohibited_unless ?", "sources": ["validation.md"], "contains": ["prohibited_unless"]}
+{"question": "À quoi sert ShouldBeUnique ?", "sources": ["queues.md"], "contains": ["ShouldBeUnique"]}
+{"question": "Que fait la méthode lazyById ?", "sources": ["eloquent.md", "queries.md"], "contains": ["lazyById"]}
+{"question": "À quoi sert la méthode once ?", "sources": ["helpers.md"], "contains": ["once("]}
+{"question": "Que fait la méthode whenLoaded ?", "sources": ["eloquent-resources.md"], "contains": ["whenLoaded"]}
+{"question": "À quoi sert la colonne remember_token ?", "sources": ["authentication.md", "migrations.md"], "contains": ["remember_token"]}
+{"question": "Que fait Number::abbreviate ?", "sources": ["helpers.md"], "contains": ["Number::abbreviate"]}
+{"question": "À quoi sert QUEUE_CONNECTION ?", "sources": ["queues.md"], "contains": ["QUEUE_CONNECTION"]}
+{"question": "Que fait Arr::undot ?", "sources": ["helpers.md"], "contains": ["Arr::undot"]}

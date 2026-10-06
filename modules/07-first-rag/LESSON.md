@@ -87,7 +87,7 @@ Le premier réflexe face à une mauvaise réponse est donc de lire les passages 
 
 ### Combien de passages
 
-Avec cinq passages, le prompt de la question ci-dessus pèse 1 927 tokens. Plus de passages donne plus de
+Avec cinq passages, le prompt de la question ci-dessus pèse environ 1 950 tokens. Plus de passages donne plus de
 chances d'inclure le bon, mais aussi plus de bruit, plus de latence et, sur un modèle hébergé, une facture
 plus lourde. Cinq est un point de départ raisonnable. Le bon nombre se mesure.
 
