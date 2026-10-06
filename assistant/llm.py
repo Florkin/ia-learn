@@ -25,13 +25,14 @@ def build_messages(system: str, history: list[dict], question: str) -> list[dict
     return [{"role": "system", "content": system}, *history, {"role": "user", "content": question}]
 
 
-def ask(question: str, history: list[dict] | None = None, system: str = SYSTEM_PROMPT) -> str:
-    response = client().chat.completions.create(
-        model=settings.chat_model,
-        messages=build_messages(system, history or [], question),
-        temperature=0,
-    )
+def chat(messages: list[dict], temperature: float = 0.0) -> str:
+    """Sends a list of messages and returns the text of the answer. Later modules all go through here."""
+    response = client().chat.completions.create(model=settings.chat_model, messages=messages, temperature=temperature)
     return response.choices[0].message.content
+
+
+def ask(question: str, history: list[dict] | None = None, system: str = SYSTEM_PROMPT) -> str:
+    return chat(build_messages(system, history or [], question))
 
 
 # --- Module 02: generation settings ------------------------------------------------------
